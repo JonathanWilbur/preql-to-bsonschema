@@ -1,4 +1,4 @@
-# PreQL
+# PreQL-to-BSON Schema Transpiler
 
 * Author: Jonathan M. Wilbur <[jonathan@wilbur.space](mailto:jonathan@wilbur.space)>
 * Copyright Year: 2019
@@ -13,15 +13,4 @@ database dialect of your choice.
 
 ## What is this Library
 
-This library converts PreQL into MariaDB SQL.
-
-## To Do
-
-- [x] Create database before deleting all triggers in it
-- [x] Make the Server kind set the time zone
-- [x] UPSERT on duplicate primary keys
-- [x] Transpile `CharacterSet`
-- [x] Transpile `Collation`
-- [x] Support multi-valued attributes
-- [ ] Warn on unrecognized types.
-- [ ] Resize columns?
+This library converts PreQL into BSON Schema, which is used by MongoDB.
