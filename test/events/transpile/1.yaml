@@ -1,0 +1,186 @@
+objects:
+  - apiVersion: preql/1.0.0
+    kind: CharacterSet
+    metadata:
+      name: utf8
+    spec:
+      name: utf8
+      targetEquivalents:
+        mysql: utf8
+  - apiVersion: preql/1.0.0
+    kind: Collation
+    metadata:
+      name: latin1csas
+    spec:
+      name: latin1csas
+      targetEquivalents:
+        mysql: latin1_general_cs
+  - apiVersion: preql/1.0.0
+    kind: DataType
+    metadata:
+      name: varchar
+      labels:
+        学-中文.com/wut: 'apple'
+        blurpy-blurp.squizzle./bizzle: mynizzle
+    spec:
+      jsonEquivalent: string
+      setters:
+        - type: trim
+          side: both
+        - type: case
+          casing: upper
+      targets:
+        mariadb:
+          return: 'VARCHAR(%l)'
+          # returnBasedOnLength:
+          #   1: 'BOOLEAN'
+          #   8: 'VARCHAR(8)'
+          #   32: 'VARCHAR(32)'
+  - apiVersion: preql/1.0.0
+    kind: Database
+    metadata:
+      name: floofy
+    spec:
+      name: floofy
+      characterSet: utf8
+      collation: latin1csas
+  - apiVersion: preql/1.0.0
+    kind: Struct
+    metadata:
+      name: people
+    spec:
+      name: person
+      databaseName: floofy
+  - apiVersion: preql/1.0.0
+    kind: Struct
+    metadata:
+      name: pet
+      labels:
+        schema: dbo
+        table: pets
+        entity: pet
+      annotations:
+        comment: "A big ol dang table of pets"
+    spec:
+      name: pet
+      entityName: animal
+      databaseName: floofy
+      characterSet: utf8
+      collation: latin1csas
+  - apiVersion: preql/1.0.0
+    kind: Attribute
+    metadata:
+      name: ownerFirstName
+      annotations:
+        comment: "Should not be abbreviated"
+    spec:
+      name: ownerFirstName
+      structName: pet
+      databaseName: floofy
+      type: varchar
+      length: 4
+      nullable: False
+      default: Bob
+      characterSet: utf8
+      collation: latin1csas
+  - apiVersion: preql/1.0.0
+    kind: Attribute
+    metadata:
+      name: ownerLastName
+      annotations:
+        comment: "Should not be abbreviated"
+    spec:
+      name: ownerLastName
+      structName: pet
+      databaseName: floofy
+      type: varchar
+      length: 64
+      nullable: False
+      default: Bob
+      objectIdentifier: '1.38.255.4.6.3'
+  - apiVersion: preql/1.0.0
+    kind: Attribute
+    metadata:
+      name: firstName
+      annotations:
+        comment: "Should not be abbreviated"
+    spec:
+      name: firstName
+      structName: person
+      databaseName: floofy
+      type: varchar
+      length: 4
+      nullable: False
+      default: Bob
+  - apiVersion: preql/1.0.0
+    kind: Attribute
+    metadata:
+      name: lastName
+      annotations:
+        comment: "Should not be abbreviated"
+    spec:
+      name: lastName
+      structName: person
+      databaseName: floofy
+      type: varchar
+      length: 64
+      nullable: False
+      default: McGobb
+  - apiVersion: preql/1.0.0
+    kind: TextIndex
+    metadata:
+      name: important
+      annotations:
+        comment: "Ogres are like onions."
+    spec:
+      name: important
+      structName: person
+      databaseName: floofy
+      keyAttributes:
+      - name: firstName
+        ascending: True
+      - name: lastName
+  - apiVersion: preql/1.0.0
+    kind: ForeignKey
+    metadata:
+      name: owner
+    spec:
+      name: owner
+      databaseName: floofy
+      parentStructName: person
+      childStructName: pet
+  - apiVersion: preql/1.0.0
+    kind: Entry
+    metadata:
+      name: myself
+      labels:
+        name: biggay
+    spec:
+      databaseName: floofy
+      structName: person
+      distinguishedName: 'lastName=Wilbur,dc=wilbur,dc=space'
+      values:
+        firstName: Jonathan
+        lastName: Wilbur
+  - apiVersion: preql/1.0.0
+    kind: Preamble
+    metadata:
+      name: yeet
+    spec:
+      uncommentedText: 'Dang it bobby'
+  - apiVersion: preql/1.0.0
+    kind: Entity
+    metadata:
+      name: persona
+    spec:
+      name: persona
+      databaseName: floofy
+      rootStruct: person
+  - apiVersion: preql/1.0.0
+    kind: Entity
+    metadata:
+      name: animal
+    spec:
+      name: animal
+      databaseName: floofy
+      rootStruct: pet

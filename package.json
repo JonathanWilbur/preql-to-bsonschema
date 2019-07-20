@@ -1,0 +1,17 @@
+{
+  "name": "preql-bsonschema",
+  "version": "0.1.0",
+  "description": "Library for converting PreQL to BSON Schema",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonathan M. Wilbur <jonathan@wilbur.space>",
+  "license": "MIT",
+  "dependencies": {
+    "preql-core": "^1.0.0-h"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.27"
+  }
+}
