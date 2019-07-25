@@ -1,7 +1,6 @@
-import { APIObject, APIObjectDatabase, Logger, SuggestedTargetIndexHandler } from 'preql-core';
+import { APIObject, APIObjectDatabase, Logger } from 'preql-core';
 import transpileEntity from '../Transpilers/entity';
 
-// TODO: Fix SuggestedObjectHandler, then re-apply it to this.
 const transpile = async (etcd: APIObjectDatabase, logger: Logger): Promise<object> => {
     let transpilations: object[] = [];
 

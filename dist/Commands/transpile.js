@@ -40,7 +40,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var entity_1 = __importDefault(require("../Transpilers/entity"));
-// TODO: Fix SuggestedObjectHandler, then re-apply it to this.
 var transpile = function (etcd, logger) { return __awaiter(_this, void 0, void 0, function () {
     var transpilations, entities, _a, _b;
     var _this = this;

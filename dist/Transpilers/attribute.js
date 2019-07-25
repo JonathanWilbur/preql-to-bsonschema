@@ -45,6 +45,8 @@ var transpileAttribute = function (obj, logger, etcd) { return __awaiter(_this, 
             throw new Error("No data type named '" + obj.spec.type + "'.");
         }
         bsonDataType = (function () {
+            if (dataType.spec.values)
+                return 'string';
             if (('bson' in dataType.spec.targets)
                 && ('return' in dataType.spec.targets['bson'])
                 && (typeof dataType.spec.targets['bson']['return'] === 'string')) {

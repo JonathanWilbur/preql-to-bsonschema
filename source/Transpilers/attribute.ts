@@ -7,6 +7,7 @@ const transpileAttribute = async (obj: APIObject<AttributeSpec>, logger: Logger,
         throw new Error(`No data type named '${obj.spec.type}'.`);
     }
     const bsonDataType: string | undefined = ((): string | undefined => {
+        if (dataType.spec.values) return 'string';
         if (
             ('bson' in dataType.spec.targets)
             && ('return' in dataType.spec.targets['bson'])
