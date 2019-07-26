@@ -11,9 +11,9 @@ const transpileAttribute = async (obj: APIObject<AttributeSpec>, logger: Logger,
         if (
             ('bson' in dataType.spec.targets)
             && ('return' in dataType.spec.targets['bson'])
-            && (typeof dataType.spec.targets['bson']['return'] === 'string')
+            && (typeof dataType.spec.targets['bson'].nativeType === 'string')
         ) {
-            return dataType.spec.targets['bson']['return'];
+            return dataType.spec.targets['bson'].nativeType;
         }
         if (dataType.spec.jsonEquivalent) {
             return dataType.spec.jsonEquivalent;

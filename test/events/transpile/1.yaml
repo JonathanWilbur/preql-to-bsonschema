@@ -31,11 +31,9 @@ objects:
           casing: upper
       targets:
         mariadb:
-          return: 'VARCHAR(%l)'
-          # returnBasedOnLength:
-          #   1: 'BOOLEAN'
-          #   8: 'VARCHAR(8)'
-          #   32: 'VARCHAR(32)'
+          nativeType: 'VARCHAR(64)'
+        bson:
+          nativeType: 'string'
   - apiVersion: preql/1.0.0
     kind: Database
     metadata:
